@@ -1,0 +1,138 @@
+import 'package:flutter/material.dart';
+import 'package:jobbercity/constants/colors.dart';
+import 'package:jobbercity/presentation/screens/home_screen.dart';
+import 'package:jobbercity/presentation/screens/register_screen.dart';
+import 'package:jobbercity/presentation/widgets/custom_text.dart';
+
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: night,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: ListView(
+            children: [
+              if (MediaQuery.of(context).size.height > 800)
+                const SizedBox(height: 140)
+              else
+                const SizedBox(height: 80),
+              const Image(
+                image: AssetImage('assets/images/logo.png'),
+              ),
+              TextField(
+                // controller: emailController,
+                style: TextStyle(height: 2, color: white),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.alternate_email,
+                    color: white,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: yellow),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: white),
+                  ),
+                  labelText: 'Email',
+                  labelStyle: TextStyle(
+                    color: white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                // controller: emailController,
+                obscureText: true,
+                style: TextStyle(height: 2, color: white),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: white,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: yellow),
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: white),
+                  ),
+                  labelText: 'Password',
+                  labelStyle: TextStyle(
+                    color: white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 5),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: CustomText(
+                  text: "Forget Password?",
+                  color: white,
+                  size: 18,
+                  weight: FontWeight.w300,
+                ),
+              ),
+              const SizedBox(height: 60),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
+                },
+                child: Container(
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: white,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Center(
+                    child: CustomText(
+                      text: 'Login',
+                      color: night,
+                      size: 25,
+                      weight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                margin: const EdgeInsets.only(right: 25, left: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomText(
+                      text: "Don't have an account?",
+                      color: white,
+                      size: 18,
+                      weight: FontWeight.w300,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RegisterScreen()),
+                        );
+                      },
+                      child: CustomText(
+                        text: "Sign Up",
+                        color: white,
+                        size: 18,
+                        weight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
